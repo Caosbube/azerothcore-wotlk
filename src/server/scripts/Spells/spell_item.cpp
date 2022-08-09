@@ -1013,8 +1013,7 @@ class spell_item_dragon_kite_summon_lightning_bunny : public SpellScript
 
     void SetDest(SpellDestination& dest)
     {
-        // Adjust effect summon position
-        Position const offset = { 3.0f, 3.0f, 20.0f, 0.0f };
+        Position const offset = { 3.0f, 3.0f, 20.0f, 0.0f };// Adjust effect summon position
         dest.Relocate(*GetCaster());
         dest.RelocateOffset(offset);
     }
@@ -1167,8 +1166,7 @@ enum EyeOfGruul
     SPELL_SHAMAN_ITEM_HEALING_TRANCE  = 37722
 };
 
-// 37705 - Healing Discount
-class spell_item_eye_of_gruul_healing_discount : public AuraScript
+class spell_item_eye_of_gruul_healing_discount : public AuraScript // 37705 - Healing Discount
 {
     PrepareAuraScript(spell_item_eye_of_gruul_healing_discount);
 
@@ -1203,6 +1201,8 @@ class spell_item_eye_of_gruul_healing_discount : public AuraScript
                 case CLASS_SHAMAN:
                     spell_id = SPELL_SHAMAN_ITEM_HEALING_TRANCE;
                     break;
+                case CLASS_ADVENTURER:
+                    spell_id = SPELL_PALADIN_ITEM_HEALING_TRANCE;
                 default:
                     return; // ignore for non-healing classes
             }
