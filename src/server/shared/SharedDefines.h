@@ -109,28 +109,28 @@ enum Races
 // EnumUtils: DESCRIBE THIS
 enum Classes
 {
-    CLASS_NONE          = 0, // SKIP
-    CLASS_WARRIOR       = 1, // TITLE Warrior
-    CLASS_PALADIN       = 2, // TITLE Paladin
-    CLASS_HUNTER        = 3, // TITLE Hunter
-    CLASS_ROGUE         = 4, // TITLE Rogue
-    CLASS_PRIEST        = 5, // TITLE Priest
-    CLASS_DEATH_KNIGHT  = 6, // TITLE Death Knight
-    CLASS_SHAMAN        = 7, // TITLE Shaman
-    CLASS_MAGE          = 8, // TITLE Mage
-    CLASS_WARLOCK       = 9, // TITLE Warlock
+    CLASS_NONE          = 0,    // SKIP
+    CLASS_WARRIOR       = 1,    // TITLE Warrior
+    CLASS_PALADIN       = 2,    // TITLE Paladin
+    CLASS_HUNTER        = 3,    // TITLE Hunter
+    CLASS_ROGUE         = 4,    // TITLE Rogue
+    CLASS_PRIEST        = 5,    // TITLE Priest
+    CLASS_DEATH_KNIGHT  = 6,    // TITLE Death Knight
+    CLASS_SHAMAN        = 7,    // TITLE Shaman
+    CLASS_MAGE          = 8,    // TITLE Mage
+    CLASS_WARLOCK       = 9,    // TITLE Warlock
     //CLASS_UNK           = 10,
-    CLASS_DRUID         = 11 // TITLE Druid
+    CLASS_DRUID         = 11,   // TITLE Druid
+    CLASS_ADVENTURER    = 12    // TITLE Adventurer
 };
 
-// max+1 for player class
-#define MAX_CLASSES       12
+#define MAX_CLASSES       13 // max+1 for player class
 
 #define CLASSMASK_ALL_PLAYABLE \
     ((1<<(CLASS_WARRIOR-1))|(1<<(CLASS_PALADIN-1))|(1<<(CLASS_HUNTER-1))| \
     (1<<(CLASS_ROGUE-1))  |(1<<(CLASS_PRIEST-1)) |(1<<(CLASS_SHAMAN-1))| \
     (1<<(CLASS_MAGE-1))   |(1<<(CLASS_WARLOCK-1))|(1<<(CLASS_DRUID-1)) | \
-    (1<<(CLASS_DEATH_KNIGHT-1)))
+    (1<<(CLASS_DEATH_KNIGHT-1))|(1<<(CLASS_ADVENTURER-1)))
 
 // valid classes for creature_template.unit_class
 enum UnitClass
@@ -143,7 +143,7 @@ enum UnitClass
 
 #define CLASSMASK_ALL_CREATURES ((1<<(UNIT_CLASS_WARRIOR-1)) | (1<<(UNIT_CLASS_PALADIN-1)) | (1<<(UNIT_CLASS_ROGUE-1)) | (1<<(UNIT_CLASS_MAGE-1)))
 
-#define CLASSMASK_WAND_USERS ((1<<(CLASS_PRIEST-1))|(1<<(CLASS_MAGE-1))|(1<<(CLASS_WARLOCK-1)))
+#define CLASSMASK_WAND_USERS ((1<<(CLASS_PRIEST-1))|(1<<(CLASS_MAGE-1))|(1<<(CLASS_WARLOCK-1))|(1<<(CLASS_ADVENTURER-1)))
 
 #define PLAYER_MAX_BATTLEGROUND_QUEUES 2
 
@@ -2741,8 +2741,7 @@ enum HolidayIds
     HOLIDAY_KALU_AK_FISHING_DERBY    = 424
 };
 
-// values based at QuestInfo.dbc
-enum QuestTypes
+enum QuestTypes // values based at QuestInfo.dbc
 {
     QUEST_TYPE_ELITE               = 1,
     QUEST_TYPE_LIFE                = 21,
@@ -2757,8 +2756,7 @@ enum QuestTypes
     QUEST_TYPE_RAID_25             = 89
 };
 
-// values based at QuestSort.dbc
-enum QuestSort
+enum QuestSort // values based at QuestSort.dbc
 {
     QUEST_SORT_EPIC                = 1,
     QUEST_SORT_WAILING_CAVERNS_OLD = 21,
@@ -2801,6 +2799,7 @@ enum QuestSort
     QUEST_SORT_NOBLEGARDEN         = 374,
     QUEST_SORT_PILGRIMS_BOUNTY     = 375,
     QUEST_SORT_LOVE_IS_IN_THE_AIR  = 376,
+    QUEST_SORT_ADVENTURER          = 377,
 };
 
 inline uint8 ClassByQuestSort(int32 QuestSort)
@@ -2827,6 +2826,8 @@ inline uint8 ClassByQuestSort(int32 QuestSort)
             return CLASS_DRUID;
         case QUEST_SORT_DEATH_KNIGHT:
             return CLASS_DEATH_KNIGHT;
+        case QUEST_SORT_ADVENTURER:
+            return CLASS_ADVENTURER;
     }
     return 0;
 }
@@ -2834,7 +2835,6 @@ inline uint8 ClassByQuestSort(int32 QuestSort)
 enum SkillType
 {
     SKILL_NONE                     = 0,
-
     SKILL_FROST                    = 6,
     SKILL_FIRE                     = 8,
     SKILL_ARMS                     = 26,

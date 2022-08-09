@@ -1700,7 +1700,11 @@ class spell_item_flask_of_the_north : public SpellScript
                 possibleSpells.push_back(SPELL_FLASK_OF_THE_NORTH_SP);
                 possibleSpells.push_back(SPELL_FLASK_OF_THE_NORTH_AP);
                 break;
-        }
+            case CLASS_ADVENTURER:
+                possibleSpells.push_back(SPELL_FLASK_OF_THE_NORTH_SP);
+                possibleSpells.push_back(SPELL_FLASK_OF_THE_NORTH_AP);
+                possibleSpells.push_back(SPELL_FLASK_OF_THE_NORTH_STR);
+        }       
 
         caster->CastSpell(caster, possibleSpells[irand(0, (possibleSpells.size() - 1))], true, nullptr);
     }
